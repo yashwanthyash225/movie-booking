@@ -15,4 +15,6 @@ public interface ShowsService {
     List<ShowsDto> findAllByScreenIdAndMovieId(final Long screenId, final Long movieId);
 
     ShowsDto save(final ShowsDto showsDto);
+
+    ShowsDto create(final ShowsDto showsDto);
 }

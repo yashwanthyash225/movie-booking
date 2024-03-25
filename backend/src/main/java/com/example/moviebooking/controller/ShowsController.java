@@ -53,4 +53,10 @@ public class ShowsController {
     public ResponseEntity<ShowsDto> save(@RequestBody final ShowsDto showsDto) {
         return ResponseEntity.ok(showsService.save(showsDto));
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<ShowsDto> create(@RequestBody final ShowsDto showsDto) {
+        return ResponseEntity.ok(showsService.create(showsDto));
+    }
+
 }
