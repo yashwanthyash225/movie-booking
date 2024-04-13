@@ -14,27 +14,24 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "seat")
+@Table(name = "user")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class SeatEntity {
+@ToString
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "shows_id")
-    private Long showsId;
-
     @Column(name = "name")
     private String name;
 
-    @Column(name = "available")
-    private Boolean available;
+    @Column(name = "age")
+    private Integer age;
 
-    @Column(name = "blocked_by")
-    private Long blockedBy;
+    @Column(name = "phone")
+    private String phone;
 }

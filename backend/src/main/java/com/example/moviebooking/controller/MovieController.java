@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 
 @RestController
@@ -22,6 +23,11 @@ public class MovieController {
 
     public MovieController(final MovieServiceImpl movieService) {
         this.movieService = movieService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<MovieDto>> getAll() {
+        return ResponseEntity.ok(movieService.getAll());
     }
 
     @GetMapping("/byId")
@@ -38,8 +44,18 @@ public class MovieController {
 
     @PostMapping("/save")
     public ResponseEntity<MovieDto> saveMovie(@RequestBody MovieDto movieDto) {
-        System.out.println("Got here");
+        System.out.println("Got here-------------");
         return ResponseEntity.ok(movieService.save(movieDto));
+    }
+
+    @GetMapping("/getImageSliderMovies")
+    public ResponseEntity<List<MovieDto>> getImageSliderMovies() {
+        return ResponseEntity.ok(movieService.getImageSliderMovies());
+    }
+
+    @GetMapping("/getRecommendedMovies")
+    public  ResponseEntity<List<MovieDto>> getRecommendedMovies() {
+        return ResponseEntity.ok(movieService.getRecommendedMovies());
     }
 
 }

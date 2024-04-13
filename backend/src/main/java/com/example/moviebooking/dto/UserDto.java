@@ -1,6 +1,5 @@
 package com.example.moviebooking.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,21 +12,18 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class SeatDto {
+@ToString
+public class UserDto {
     @JsonProperty("id")
     private Long id;
-
-    @JsonProperty("showsId")
-    private Long showsId;
 
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty("available")
-    private Boolean available;
+    @JsonProperty("age")
+    private Integer age;
 
-    @JsonProperty("blocked_by")
-    private Long blockedBy;
+    @JsonProperty("phone")
+    private String phone;
 }

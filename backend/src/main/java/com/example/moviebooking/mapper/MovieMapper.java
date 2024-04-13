@@ -4,6 +4,8 @@ import com.example.moviebooking.dto.MovieDto;
 import com.example.moviebooking.model.MovieEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class MovieMapper {
     public MovieDto entityToDto(final MovieEntity movieEntity) {
@@ -26,5 +28,13 @@ public class MovieMapper {
                 .length(movieDto.getLength())
                 .genre(movieDto.getGenre())
                 .build();
+    }
+
+    public List<MovieDto> entitiesToDtos(final List<MovieEntity> movieEntities) {
+        return movieEntities.stream().map(this::entityToDto).toList();
+    }
+
+    public List<MovieEntity> dtosToEntities(final List<MovieDto> movieDtos) {
+        return movieDtos.stream().map(this::dtoToEntity).toList();
     }
 }

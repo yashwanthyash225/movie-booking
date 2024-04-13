@@ -15,4 +15,12 @@ public interface SeatService {
     SeatDto findByShowsIdAndName(final Long showsId, final String name);
 
     SeatDto save(final SeatDto seatDto);
+
+    SeatDto blockSeat(final Long seatId, final Long userId);
+
+    SeatDto unblockSeat(final Long seatId);
+
+    List<SeatDto> blockSeats(final List<Long> seatIds, final Long userId);
+
+    List<SeatDto> unblockSeats(final List<Long> seatIds);
 }

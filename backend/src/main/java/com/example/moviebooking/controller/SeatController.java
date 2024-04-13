@@ -1,5 +1,6 @@
 package com.example.moviebooking.controller;
 
+import com.example.moviebooking.dto.BookTicketsRequestDto;
 import com.example.moviebooking.dto.SeatDto;
 import com.example.moviebooking.service.impl.SeatServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -51,4 +52,27 @@ public class SeatController {
     public ResponseEntity<SeatDto> save(@RequestBody final SeatDto seatDto) {
         return ResponseEntity.ok(seatService.save(seatDto));
     }
+
+    @PostMapping("/blockSeat")
+    public ResponseEntity<SeatDto> blockSeat(@RequestParam("seatId") @NotNull final Long seatId,
+                                             @RequestParam("userId") @NotNull final Long userId) {
+        return ResponseEntity.ok(seatService.blockSeat(seatId, userId));
+    }
+
+    @PostMapping("/blockSeats")
+    public ResponseEntity<List<SeatDto>> blockSeats(@RequestBody final BookTicketsRequestDto bookTicketsRequestDto) {
+        return ResponseEntity.ok(seatService.blockSeats(bookTicketsRequestDto.getSeatIds(),
+                bookTicketsRequestDto.getUserId()));
+    }
+
+    @PostMapping("/unblockSeat")
+    public ResponseEntity<SeatDto> unblockSeat(@RequestParam("seatId") @NotNull final Long seatId) {
+        return ResponseEntity.ok(seatService.unblockSeat(seatId));
+    }
+
+    @PostMapping("/unblockSeats")
+    public ResponseEntity<List<SeatDto>> unblockSeats(@RequestBody final BookTicketsRequestDto bookTicketsRequestDto) {
+        return ResponseEntity.ok(seatService.unblockSeats(bookTicketsRequestDto.getSeatIds()));
+    }
+
  }

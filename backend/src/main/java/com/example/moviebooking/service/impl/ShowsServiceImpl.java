@@ -22,7 +22,6 @@ public class ShowsServiceImpl implements ShowsService {
     private final SeatRepo seatRepo;
     private final ScreenRepo screenRepo;
 
-    @Autowired
     public ShowsServiceImpl(final ShowsMapper showsMapper,
                             final ShowsRepo showsRepo,
                             final SeatRepo seatRepo,

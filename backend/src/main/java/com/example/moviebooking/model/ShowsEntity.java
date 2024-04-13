@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "shows")
@@ -38,5 +38,5 @@ public class ShowsEntity {
     private Boolean valid;
 
     @Column(name = "timing")
-    private Date timing;
+    private LocalDateTime timing;
 }

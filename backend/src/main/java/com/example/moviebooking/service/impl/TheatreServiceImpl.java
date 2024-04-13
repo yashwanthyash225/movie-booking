@@ -16,7 +16,6 @@ public class TheatreServiceImpl implements TheatreService {
     private final TheatreMapper theatreMapper;
     private final TheatreRepo theatreRepo;
 
-    @Autowired
     public TheatreServiceImpl(final TheatreMapper theatreMapper,
                               final TheatreRepo theatreRepo) {
         this.theatreMapper = theatreMapper;

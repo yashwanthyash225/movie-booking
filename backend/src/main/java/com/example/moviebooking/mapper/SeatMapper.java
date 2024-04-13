@@ -15,6 +15,7 @@ public class SeatMapper {
                 .showsId(seatEntity.getShowsId())
                 .name(seatEntity.getName())
                 .available(seatEntity.getAvailable())
+                .blockedBy(seatEntity.getBlockedBy())
                 .build();
     }
 
@@ -24,6 +25,7 @@ public class SeatMapper {
                 .showsId(seatDto.getShowsId())
                 .name(seatDto.getName())
                 .available(seatDto.getAvailable())
+                .blockedBy(seatDto.getBlockedBy())
                 .build();
     }
 

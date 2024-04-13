@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "movie")
@@ -36,7 +36,7 @@ public class MovieEntity {
     private String description;
 
     @Column(name = "release_date", nullable = false)
-    private Date releaseDate;
+    private LocalDateTime releaseDate;
 
     @Column(name = "genre")
     private String genre;

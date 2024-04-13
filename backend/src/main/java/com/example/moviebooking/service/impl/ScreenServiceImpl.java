@@ -16,7 +16,6 @@ public class ScreenServiceImpl implements ScreenService {
     private final ScreenRepo screenRepo;
     private final ScreenMapper screenMapper;
 
-    @Autowired
     public ScreenServiceImpl(final ScreenRepo screenRepo,
                              final ScreenMapper screenMapper) {
         this.screenRepo = screenRepo;

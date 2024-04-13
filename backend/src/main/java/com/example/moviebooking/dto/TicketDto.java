@@ -1,6 +1,6 @@
 package com.example.moviebooking.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,25 +9,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Builder
-public class SeatDto {
+public class TicketDto {
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("showsId")
-    private Long showsId;
+    @JsonProperty("userId")
+    private Long userId;
 
-    @JsonProperty("name")
-    private String name;
+    @JsonProperty("seatId")
+    private Long seatId;
 
-    @JsonProperty("available")
-    private Boolean available;
-
-    @JsonProperty("blocked_by")
-    private Long blockedBy;
+    @JsonProperty("isCancelled")
+    private Boolean isCancelled;
 }

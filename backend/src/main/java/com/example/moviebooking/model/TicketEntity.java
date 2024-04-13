@@ -14,27 +14,24 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "seat")
+@Table(name = "ticket")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-public class SeatEntity {
+@ToString
+public class TicketEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "shows_id")
-    private Long showsId;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "seat_id")
+    private Long seatId;
 
-    @Column(name = "available")
-    private Boolean available;
-
-    @Column(name = "blocked_by")
-    private Long blockedBy;
+    @Column(name = "is_cancelled")
+    private Boolean isCancelled;
 }
