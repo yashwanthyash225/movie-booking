@@ -34,6 +34,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,7 +101,7 @@ public class FrontendServiceImpl implements FrontendService {
                 .collect(Collectors.toMap(TheatreEntity::getId, theatreMapper::entityToDto));
         final List<MovieTheatreResponseDto> movieTheatreResponseDtos = new ArrayList<>();
         for (final Map.Entry<LocalDate, List<ShowTimingsDto>> entry : showMap.entrySet()) {
-            final HashMap<Long, List<ShowTimingsDto>> theatreShowMap = entry.getValue().stream()
+            final HashMap<Long, List<ShowTimingsDto>> theatreShowMap = entry.getValue().stream().sorted(Comparator.comparing(ShowTimingsDto::getTiming))
                     .collect(Collectors.groupingBy(
                             e -> theatreMap.get(screenMap.get(e.getShowId())),
                             HashMap::new,
@@ -112,10 +113,16 @@ public class FrontendServiceImpl implements FrontendService {
                         .showTimingsDtos(showEntry.getValue())
                         .build());
             }
+            final LocalDate localDate = entry.getKey();
             movieTheatreResponseDtos.add(MovieTheatreResponseDto.builder()
-                    .date(entry.getKey())
+                    .localDate(localDate)
+                    .date(localDate.getDayOfMonth())
+                    .month(localDate.getMonth().name().substring(0, 3))
+                    .week(localDate.getDayOfWeek().name().substring(0, 3))
                     .theatreDetails(theatreDetailsDtos).build());
         }
+        System.out.println("Completed -------------------------------");
+        movieTheatreResponseDtos.sort(Comparator.comparing(MovieTheatreResponseDto::getLocalDate));
         return movieTheatreResponseDtos;
     }
 
@@ -136,12 +143,16 @@ public class FrontendServiceImpl implements FrontendService {
                 .collect(Collectors.toMap(ShowsEntity::getId, ShowsEntity::getMovieId));
         final List<TheatreMoviesResponseDto> theatreMoviesResponseDtos = new ArrayList<>();
         for (Map.Entry<LocalDate, List<ShowTimingsDto>> entry : showListMap.entrySet()) {
-            final Map<Long, List<ShowTimingsDto>> movieShowMap = entry.getValue().stream()
+            final Map<Long, List<ShowTimingsDto>> movieShowMap = entry.getValue().stream().sorted(Comparator.comparing(ShowTimingsDto::getTiming))
                     .collect(Collectors.groupingBy(
                             e -> movieShowIdMap.get(e.getShowId()),
                             mapping(Function.identity(), Collectors.toList())));
+            final LocalDate localDate = entry.getKey();
             theatreMoviesResponseDtos.add(TheatreMoviesResponseDto.builder()
-                    .date(entry.getKey())
+                    .localDate(localDate)
+                    .date(localDate.getDayOfMonth())
+                    .month(localDate.getMonth().name().substring(0, 3))
+                    .week(localDate.getDayOfWeek().name().substring(0, 3))
                     .movieDetails(movieShowMap.entrySet().stream()
                             .map(entry1 ->
                                     MovieDetailsDto.builder()
@@ -150,6 +161,7 @@ public class FrontendServiceImpl implements FrontendService {
                                             .build()).toList())
                     .build());
         }
+        theatreMoviesResponseDtos.sort(Comparator.comparing(TheatreMoviesResponseDto::getLocalDate));
         return theatreMoviesResponseDtos;
     }
 

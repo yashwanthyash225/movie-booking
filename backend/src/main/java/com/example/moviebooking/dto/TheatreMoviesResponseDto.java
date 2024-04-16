@@ -18,8 +18,18 @@ import java.util.List;
 @ToString
 @Builder
 public class TheatreMoviesResponseDto {
+
+    @JsonProperty("localDate")
+    private LocalDate localDate;
+
+    @JsonProperty("week")
+    private String week;
+
+    @JsonProperty("month")
+    private String month;
+
     @JsonProperty("date")
-    private LocalDate date;
+    private Integer date;
 
     @JsonProperty("movieDetails")
     private List<MovieDetailsDto> movieDetails;
